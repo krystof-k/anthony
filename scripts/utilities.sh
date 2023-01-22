@@ -111,3 +111,12 @@ drive_folder_path() {
 prepare_drive_folder() {
   mkdir -p $(drive_folder_path $1)
 }
+
+extract_speed_from_dd() {
+  echo ${1^^} \
+    | tail -n 1 \
+    | awk -F', ' '{ print $4 }' \
+    | sed "s/ //g" \
+    | sed "s/B\/S//g" \
+    | numfmt --from=si
+}
