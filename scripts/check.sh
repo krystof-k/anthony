@@ -40,3 +40,14 @@ if ! command -v jq &> /dev/null; then
     exit 1
   fi
 fi
+
+if ! command -v fio &> /dev/null; then
+  echo '`fio` command not found'
+
+  read -r -p $'Do you want to install `fio`? [Y/n]\n' fio
+  if [[ "$fio" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    apt install fio
+  else
+    exit 1
+  fi
+fi
