@@ -9,9 +9,8 @@ number_of_drives=$#
 drives_to_wipe=($drives)
 
 wipe() {
-  block_size=$(drive_block_size $1)
   echo "Filling \`$1\` drive with zeros:"
-  dd if=/dev/zero of=$1 bs=$block_size status=progress 2>&1
+  dd if=/dev/zero of=$1 bs=$WIPE_BLOCK_SIZE status=progress 2>&1
 }
 
 echo "This will wipe the drives ($number_of_drives total: \`$drives\`)!"
