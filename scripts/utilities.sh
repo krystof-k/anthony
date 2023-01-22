@@ -9,13 +9,13 @@ drive_vendor() {
 drive_model() {
   vendor=$(drive_vendor $1)
   model=$(lsblk $1 --nodeps --output model --noheadings)
-  echo $model | sed "s/$vendor //"
+  echo $model | sed "s|$vendor ||"
 }
 
 drive_model_family() {
   vendor=$(drive_vendor $1)
   model_family_raw=$(drive_model_family_raw $1)
-  echo $model_family_raw | sed "s/$vendor //"
+  echo $model_family_raw | sed "s|$vendor ||"
 }
 
 drive_model_family_raw() {
@@ -27,7 +27,7 @@ drive_serial() {
 }
 
 drive_type() {
-  rotational=$(lsblk $1 --nodeps --output rota --noheadings | sed "s/ //g")
+  rotational=$(lsblk $1 --nodeps --output rota --noheadings | sed "s| ||g")
   if [[ $rotational == 1 ]]; then
     echo 'HDD'
   else
@@ -59,7 +59,7 @@ drive_size_in_terabytes() {
 }
 
 drive_block_size() {
-  lsblk $1 --nodeps --output phy-sec --noheadings --bytes | sed "s/ //g"
+  lsblk $1 --nodeps --output phy-sec --noheadings --bytes | sed "s| ||g"
 }
 
 stripped_drive_path() {
@@ -101,7 +101,9 @@ drive_folder_name() {
   model_family=$(drive_model_family $1 | awk '{print $1}')
   serial=$(drive_serial $1)
 
-  echo "$type-$size_unit"'_'"$size_number-$vendor-$model_family-$serial"
+  path="$type-$size_unit"'_'"$size_number-$vendor-$model_family-$serial"
+
+  echo $path | sed "s|/|-|g" | sed "s|--|-|g"
 }
 
 drive_folder_path() {
@@ -116,7 +118,7 @@ extract_speed_from_dd() {
   echo ${1^^} \
     | tail -n 1 \
     | awk -F', ' '{ print $4 }' \
-    | sed "s/ //g" \
-    | sed "s/B\/S//g" \
+    | sed "s| ||g" \
+    | sed "s|B/S||g" \
     | numfmt --from=si
 }
