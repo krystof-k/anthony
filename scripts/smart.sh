@@ -9,7 +9,7 @@ number_of_drives=$#
 drives_to_test=($drives)
 
 test() {
-  echo "Testing \`$1\` drive:"
+  echo "Testing \`$1\` drive health:"
   smartctl -t long $1
 }
 
@@ -88,8 +88,8 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     ((iteration++))
   done
 
-  echo "All drives ($number_of_drives) tested."
+  echo "All drives ($number_of_drives) health tested."
 else
-  echo 'Not testing any drives & exiting…'
+  echo 'Not testing health of any drives & exiting…'
   exit
 fi
