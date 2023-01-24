@@ -26,7 +26,7 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
       ((iteration++))
     done
 
-    echo "All drives ($number_of_drives) preformance tested."
+    echo -e "\r\nAll drives ($number_of_drives) preformance tested."
   else
     echo 'Not testing performance of any drives & exiting…'
     exit

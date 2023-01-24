@@ -22,7 +22,7 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     coproc_name=smart_${drive_name}
     eval coproc $coproc_name "{ test $drive; }"
     if [[ "$iteration" == 1 ]] && [[ $number_of_drives > 1 ]]; then
-      echo 'Feel free to ignore the following warning(s):'
+      echo -e "\r\nFeel free to ignore the following warning(s):"
     fi
     ((iteration++))
   done
@@ -88,7 +88,7 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     ((iteration++))
   done
 
-  echo "All drives ($number_of_drives) health tested."
+  echo -e "\r\nAll drives ($number_of_drives) health tested."
 else
   echo 'Not testing health of any drives & exiting…'
   exit
