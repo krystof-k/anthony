@@ -16,7 +16,7 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     yes | bash $(dirname $0)/wipe.sh $drives
 
     echo -e "\r\n\r\n\r\nRunning S.M.A.R.T. testing script\r\n"
-    yes | bash $(dirname $0)/smart.sh $drives
+    yes | bash $(dirname $0)/smart.sh --test $drives
 
     echo -e "\r\n\r\n\r\nRunning performance testing script\r\n"
     yes | bash $(dirname $0)/performance.sh $drives
