@@ -20,7 +20,7 @@ if [[ "$continue" =~ ^([yY][eE][sS]|[yY])$ ]]; then
       drive_folder_path=$(drive_folder_path $drive)
       prepare_drive_folder $drive
       performance_file_name=$drive_folder_path/$(date +'%Y_%m_%d_%H_%M')_performance.json
-      
+
       fio --filename=$drive --output-format=json --output=$performance_file_name "$(dirname $0)/performance.ini"
 
       ((iteration++))

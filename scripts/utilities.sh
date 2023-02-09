@@ -39,7 +39,7 @@ drive_size() {
   gigabytes=$(drive_size_in_gigabytes $1)
   terabytes=$(drive_size_in_terabytes $1)
 
-  if (( $gigabytes > 1500 )) && [ $(($terabytes * 1000)) = $gigabytes ]; then
+  if (($gigabytes > 1500)) && [ $(($terabytes * 1000)) = $gigabytes ]; then
     echo "$terabytes TB"
   else
     echo "$gigabytes GB"
