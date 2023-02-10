@@ -65,4 +65,8 @@ Now you can run the shell scripts:
 
 As the script can easily run for several hours, it is meaningful to run it within a `screen`.
 
-Then you can upload the results for example via [transfer.sh](https://transfer.sh) and save them for later.
+Then you can upload the results for example via [transfer.sh](https://transfer.sh) and save them for later:
+
+```console
+tar -czf - ./data | curl --upload-file - https://transfer.sh/anthony.tar.gz
+```
