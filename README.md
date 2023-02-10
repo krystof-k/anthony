@@ -20,7 +20,7 @@ Set up Anthony shell scripts in `./anthony` folder:
 
 ```console
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/krystof-k/anthony/main/scripts/setup.sh)" \
-&& cd anthony
+  && cd anthony
 ```
 
 ### Run the scripts
