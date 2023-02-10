@@ -8,7 +8,7 @@ Now, it is just a bunch of shell scripts to easily wipe, health check and perfor
 
 ### Install dependencies
 
-You'll need [smartmontools](https://www.smartmontools.org) (v. 7+), [jq](https://stedolan.github.io/jq/) and [fio](https://fio.readthedocs.io/en/latest/fio_doc.html):
+You'll need [smartmontools](https://www.smartmontools.org) (v. 7+), [jq](https://stedolan.github.io/jq/) and [fio](https://fio.readthedocs.io/en/latest/fio_doc.html) (in case you want to test performance):
 
 ```console
 sudo apt install smartmontools jq fio
