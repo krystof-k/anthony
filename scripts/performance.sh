@@ -4,6 +4,17 @@ source "$(dirname $0)/variables.sh"
 source "$(dirname $0)/utilities.sh"
 source "$(dirname $0)/check.sh"
 
+if ! command -v fio &> /dev/null; then
+  echo '`fio` command not found'
+
+  read -r -p $'Do you want to install `fio`? [Y/n]\n' fio
+  if [[ "$fio" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    apt install fio
+  else
+    exit 1
+  fi
+fi
+
 drives=$@
 number_of_drives=$#
 drives_to_test=($drives)
