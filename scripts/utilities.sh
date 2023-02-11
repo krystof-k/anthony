@@ -48,13 +48,13 @@ drive_size() {
 
 drive_size_in_gigabytes() {
   bytes=$(lsblk $1 --nodeps --output size --noheadings --bytes)
-  gigabytes=$((bytes / 1000 / 1000 / 1000))
+  gigabytes=$(echo $bytes | numfmt --to=si --to-unit=G --round=nearest | numfmt --from=si)
   echo $gigabytes
 }
 
 drive_size_in_terabytes() {
   gigabytes=$(drive_size_in_gigabytes $1)
-  terabytes=$((gigabytes / 1000))
+  terabytes=$(echo $gigabytes | numfmt --from-unit=G --to-unit=T --round=nearest)
   echo $terabytes
 }
 
