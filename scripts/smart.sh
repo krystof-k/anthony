@@ -6,8 +6,8 @@ source "$(dirname $0)/check.sh"
 
 arguments=$@
 drives=$(echo "$arguments" | sed "s|--test||g")
-number_of_drives=${#drives[@]}
 drives_to_test=($drives)
+number_of_drives=${#drives_to_test[@]}
 
 check_option() {
   if [[ $1 == *"--test"* ]]; then
