@@ -25,9 +25,13 @@ test() {
 save() {
   drive_folder_path=$(drive_folder_path $1)
   prepare_drive_folder $1
-  smart_file_name=$(date +'%Y_%m_%d_%H_%M')_smart
+  formatted_date=$(date +'%Y_%m_%d_%H_%M')
+  smart_file_name=${formatted_date}_smart
+  smart_all_file_name=${formatted_date}_smart_all
   smartctl --json=o -a $1 > $drive_folder_path/${smart_file_name}.json
   smartctl -a $1 > $drive_folder_path/${smart_file_name}.txt
+  smartctl --json=o -x $1 > $drive_folder_path/${smart_all_file_name}.json
+  smartctl -x $1 > $drive_folder_path/${smart_all_file_name}.txt
 }
 
 if check_option $arguments; then
